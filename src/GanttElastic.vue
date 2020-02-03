@@ -9,7 +9,11 @@
 <template>
   <div class="gantt-elastic" style="width:100%">
     <slot name="header"></slot>
-    <main-view ref="mainView"></main-view>
+    <main-view ref="mainView">
+      <template slot="loader">
+        <slot name="loader"></slot>
+      </template>
+    </main-view>
     <slot name="footer"></slot>
   </div>
 </template>
@@ -1506,7 +1510,10 @@ const GanttElastic = {
     this.state.unwatchOutputTasks = this.$watch(
       'outputTasks',
       tasks => {
-        this.$emit('tasks-changed', tasks.map(task => task));
+        this.$emit(
+          'tasks-changed',
+          tasks.map(task => task)
+        );
       },
       { deep: true }
     );

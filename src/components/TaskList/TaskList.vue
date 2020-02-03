@@ -21,6 +21,7 @@
         :style="{ ...root.style['task-list-items'], height: root.state.options.rowsHeight + 'px' }"
       >
         <task-list-item v-for="task in root.visibleTasks" :key="task.id" :task="task"></task-list-item>
+        <slot name="loader"></slot>
       </div>
     </div>
   </div>

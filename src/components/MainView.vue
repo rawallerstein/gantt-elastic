@@ -37,7 +37,11 @@
             }"
             v-show="root.state.options.taskList.display"
           >
-            <task-list></task-list>
+            <task-list>
+              <template slot="loader">
+                <slot name="loader">
+              </template>
+            </task-list>
           </div>
           <div
             class="gantt-elastic__main-view-container"
