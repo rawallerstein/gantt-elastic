@@ -38,7 +38,7 @@
             v-show="root.state.options.taskList.display"
           >
             <task-list>
-              <template slot="loader">
+              <template #loader>
                 <slot name="loader">
               </template>
             </task-list>

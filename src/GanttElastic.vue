@@ -10,7 +10,7 @@
   <div class="gantt-elastic" style="width:100%">
     <slot name="header"></slot>
     <main-view ref="mainView">
-      <template slot="loader">
+      <template #loader>
         <slot name="loader"></slot>
       </template>
     </main-view>
