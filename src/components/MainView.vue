@@ -39,7 +39,7 @@
           >
             <task-list>
               <template #loader>
-                <slot name="loader">
+                <slot name="loader"></slot>
               </template>
             </task-list>
           </div>

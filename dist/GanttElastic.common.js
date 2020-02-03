@@ -1200,7 +1200,22 @@ var render = function() {
     [
       _vm._t("header"),
       _vm._v(" "),
-      _c("main-view", { ref: "mainView" }),
+      _c("main-view", {
+        ref: "mainView",
+        scopedSlots: _vm._u(
+          [
+            {
+              key: "loader",
+              fn: function() {
+                return [_vm._t("loader")]
+              },
+              proxy: true
+            }
+          ],
+          null,
+          true
+        )
+      }),
       _vm._v(" "),
       _vm._t("footer")
     ],
@@ -1284,7 +1299,23 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
                         }
                       )
                     },
-                    [_c("task-list")],
+                    [
+                      _c("task-list", {
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "loader",
+                              fn: function() {
+                                return [_vm._t("loader")]
+                              },
+                              proxy: true
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      })
+                    ],
                     1
                   ),
                   _vm._v(" "),
@@ -1424,13 +1455,17 @@ var TaskListvue_type_template_id_6e11f12f_render = function() {
                 height: _vm.root.state.options.rowsHeight + "px"
               })
             },
-            _vm._l(_vm.root.visibleTasks, function(task) {
-              return _c("task-list-item", {
-                key: task.id,
-                attrs: { task: task }
-              })
-            }),
-            1
+            [
+              _vm._l(_vm.root.visibleTasks, function(task) {
+                return _c("task-list-item", {
+                  key: task.id,
+                  attrs: { task: task }
+                })
+              }),
+              _vm._v(" "),
+              _vm._t("loader")
+            ],
+            2
           )
         ],
         1
@@ -2494,6 +2529,7 @@ if (false) { var TaskListItem_api; }
 TaskListItem_component.options.__file = "src/components/TaskList/TaskListItem.vue"
 /* harmony default export */ var TaskListItem = (TaskListItem_component.exports);
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskList.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -3735,7 +3771,10 @@ var DependencyLinesvue_type_template_id_f1cbf6ba_render = function() {
             style: Object.assign(
               {},
               _vm.root.style["chart-dependency-lines-path"],
-              task.style["chart-dependency-lines-path"]
+              task.style["chart-dependency-lines-path"],
+              task.style[
+                "chart-dependency-lines-path-" + dependencyLine.task_id
+              ]
             ),
             attrs: { task: task, d: dependencyLine.points }
           })
@@ -3863,7 +3902,7 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
         .filter(task => typeof task.dependentOn !== 'undefined')
         .map(task => {
           task.dependencyLines = task.dependentOn.map(id => {
-            return { points: this.getPoints(id, task.id) };
+            return { points: this.getPoints(id, task.id), task_id: id };
           });
           return task;
         })
@@ -5555,6 +5594,10 @@ Chart_component.options.__file = "src/components/Chart/Chart.vue"
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6098,6 +6141,10 @@ function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-serif') {
 var ResizeObserver_es = __webpack_require__(3);
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/GanttElastic.vue?vue&type=script&lang=js&
+//
+//
+//
+//
 //
 //
 //
@@ -7606,7 +7653,10 @@ const GanttElastic = {
     this.state.unwatchOutputTasks = this.$watch(
       'outputTasks',
       tasks => {
-        this.$emit('tasks-changed', tasks.map(task => task));
+        this.$emit(
+          'tasks-changed',
+          tasks.map(task => task)
+        );
       },
       { deep: true }
     );
