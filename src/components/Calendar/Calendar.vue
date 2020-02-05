@@ -310,15 +310,15 @@ export default {
      *
      * @returns {int}
      */
-    calculateCalendarDimensions({ hours, days, months }) {
+    calculateCalendarDimensions() {
       let height = 0;
-      if (this.root.state.options.calendar.hour.display && hours.length > 0) {
+      if (this.root.state.options.calendar.hour.display) {
         height += this.root.state.options.calendar.hour.height;
       }
-      if (this.root.state.options.calendar.day.display && days.length > 0) {
+      if (this.root.state.options.calendar.day.display) {
         height += this.root.state.options.calendar.day.height;
       }
-      if (this.root.state.options.calendar.month.display && months.length > 0) {
+      if (this.root.state.options.calendar.month.display) {
         height += this.root.state.options.calendar.month.height;
       }
       this.root.state.options.calendar.height = height;
@@ -331,7 +331,7 @@ export default {
       const days = this.generateDays();
       const months = this.generateMonths();
       const allDates = { hours, days, months };
-      this.calculateCalendarDimensions(allDates);
+      this.calculateCalendarDimensions();
       return allDates;
     }
   }
