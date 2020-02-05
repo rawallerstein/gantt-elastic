@@ -1,6 +1,6 @@
 {
   "name": "gantt-elastic-qliq",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Fork of gantt-chart",
   "main": "src/GanttElastic.vue",
   "dependencies": {
